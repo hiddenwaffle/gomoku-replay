@@ -1,16 +1,16 @@
-import {init as controlsInit} from './controls'
+import {init as controlsInit} from './move-selector'
 import {init as drawInit} from './draw'
 import {
   canvas,
-  fileUpload,
   moveSelector
 } from './elements'
 import {eventBus} from './event-bus'
-import {init as readerInit, read} from './reader'
+import {init as fileSelectorInit} from './file-selector'
 
 // Specific initialization order:
 controlsInit()
 drawInit()
+fileSelectorInit()
 
 /**
  * Ensure that the canvas is scaled to the height of the window.
@@ -22,14 +22,3 @@ function resizeHandler() {
 }
 window.addEventListener('resize', resizeHandler, false)
 resizeHandler()
-
-/**
- * Allow user to upload a log file.
- */
-function handleFileSelect(event) {
-  read(event.target.files[0])
-}
-fileUpload.addEventListener('change', handleFileSelect, false);
-
-// Testing Delete Me
-read()
