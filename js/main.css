@@ -1,0 +1,12 @@
+body {
+  text-align: center;
+  margin: 32px;
+  color: rgb(26, 26, 26);
+  font-size: 24pt;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
+
+.note {
+  font-size: 12pt;
+  color: #9a9a9a;
+}

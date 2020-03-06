@@ -1,0 +1,6 @@
+# Parcel
+.cache
+dist
+
+# On Wednesdays we wear pink
+node_modules
