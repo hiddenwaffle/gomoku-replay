@@ -1,6 +1,7 @@
 body {
   text-align: center;
   margin: 32px;
+  background-color: #eee;
   color: rgb(26, 26, 26);
   font-size: 24pt;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
@@ -18,4 +19,10 @@ body {
 #range-container {
   margin-top: -24px;
   margin-left: -28px; /* hack */
+}
+
+.github-icon {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
 }

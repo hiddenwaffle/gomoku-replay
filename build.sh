@@ -4,6 +4,6 @@
 # https://stackoverflow.com/a/246128
 cd $(dirname "${BASH_SOURCE[0]}")
 
-rm -rf docs
+rm -rf dist docs
 yarn run build
 mv dist docs
