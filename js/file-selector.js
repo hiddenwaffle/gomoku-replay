@@ -1,7 +1,7 @@
 import {
   fileUpload,
 } from './elements'
-import {init as readerInit, read} from './reader'
+import {read} from './reader'
 
 export function init() {
   fileUpload.addEventListener('change', handleFileSelect, false)
