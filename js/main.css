@@ -10,3 +10,8 @@ body {
   font-size: 12pt;
   color: #9a9a9a;
 }
+
+#range-container {
+  margin-top: -24px;
+  margin-left: -28px; /* hack */
+}

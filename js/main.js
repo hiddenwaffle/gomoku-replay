@@ -1,12 +1,15 @@
+import {init as controlsInit} from './controls'
 import {init as drawInit} from './draw'
 import {
   canvas,
-  fileUpload
+  fileUpload,
+  moveSelector
 } from './elements'
 import {eventBus} from './event-bus'
 import {init as readerInit, read} from './reader'
 
 // Specific initialization order:
+controlsInit()
 drawInit()
 
 /**
@@ -14,6 +17,7 @@ drawInit()
  */
 function resizeHandler() {
   canvas.width = canvas.height = Math.floor(window.innerHeight * 0.75)
+  moveSelector.style.width = `${canvas.width}px`
   eventBus.fire('window-resized')
 }
 window.addEventListener('resize', resizeHandler, false)

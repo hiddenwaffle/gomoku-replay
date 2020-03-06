@@ -1,5 +1,5 @@
 import {eventBus} from './event-bus'
-import {clear, add} from './model'
+import {clear, addMove} from './model'
 
 /**
  * Testing Delete Me
@@ -15,7 +15,7 @@ export function read(x) {
   for (let line of lines) {
     const matchResults = line.match(/ - DEBUG - ([X.O|]+)$/)
     if (matchResults && matchResults.length == 2) {
-      add(matchResults[1].split('|')) // Use [1] because [0] is the full string.
+      addMove(matchResults[1].split('|')) // Use [1] because [0] is the full string.
     } else if (line.includes('INFO - Game Board Size')) {
       // Ignore
     } else if (line.includes('INFO - Winner')) {

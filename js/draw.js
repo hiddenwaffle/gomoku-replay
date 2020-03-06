@@ -4,7 +4,7 @@ import {
   ctx
 } from './elements'
 import {eventBus} from './event-bus'
-import {model} from './model'
+import {model, currentMove} from './model'
 
 const SMU_RED = '#cc0035'
 const SMU_BLUE = '#354ca1'
@@ -12,6 +12,7 @@ const SMU_BLUE = '#354ca1'
 export function init() {
   eventBus.register('window-resized', draw)
   eventBus.register('file-read', draw)
+  eventBus.register('current-move-changed', draw)
 }
 
 /**
@@ -20,6 +21,13 @@ export function init() {
  */
 function getCellSize() {
   return Math.floor(canvas.height / config.boardSize) - 1
+}
+
+function drawCellBoundary(row, col, cellSize) {
+  ctx.strokeRect(col * cellSize + 0.5,
+    row * cellSize + 0.5,
+    cellSize,
+    cellSize)
 }
 
 function drawCell(row, col, value, cellSize) {
@@ -48,17 +56,17 @@ export function draw() {
   ctx.strokeStyle = 'lightgray'
   for (let row = 0; row < config.boardSize; row++) {
     for (let col = 0; col < config.boardSize; col++) {
-      ctx.strokeRect(col * cellSize + 0.5,
-                     row * cellSize + 0.5,
-                     cellSize,
-                     cellSize)
+      drawCellBoundary(row, col, cellSize)
     }
   }
-  for (let move of model.moves) {
-    for (let [row, symbols] of move.entries()) {
-      for (let col = 0; col < symbols.length; col++) {
-        const value = symbols[col]
-        drawCell(row, col, value, cellSize)
+  if (model.currentMoveIndex >= 0) {
+    const move = currentMove()
+    if (move) {
+      for (let [row, symbols] of move.entries()) {
+        for (let col = 0; col < symbols.length; col++) {
+          const value = symbols[col]
+          drawCell(row, col, value, cellSize)
+        }
       }
     }
   }
