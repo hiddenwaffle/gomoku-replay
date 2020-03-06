@@ -10,6 +10,7 @@ function resetMoveSelector(event) {
   const max = moveCount() - 1 // input range is inclusive
   moveSelector.max = max
   moveSelector.disabled = false
+  moveSelector.value = 0
   updateCurrentMove(0)
 }
 
