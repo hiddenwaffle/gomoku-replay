@@ -11,7 +11,6 @@ export const model = {
 }
 
 export function clear() {
-  console.log('here')
   // These assignments should match the initialization.
   model.currentMoveIndex = null,
   model.moves = []
