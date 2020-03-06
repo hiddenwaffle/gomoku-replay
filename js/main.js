@@ -1,11 +1,31 @@
-import { canvas } from './elements'
-import { config } from './config'
-import { draw } from './draw'
+import {init as drawInit} from './draw'
+import {
+  canvas,
+  fileUpload
+} from './elements'
+import {eventBus} from './event-bus'
+import {init as readerInit, read} from './reader'
 
+// Specific initialization order:
+drawInit()
+
+/**
+ * Ensure that the canvas is scaled to the height of the window.
+ */
 function resizeHandler() {
   canvas.width = canvas.height = Math.floor(window.innerHeight * 0.75)
-  draw()
+  eventBus.fire('window-resized')
 }
-window.addEventListener('resize', resizeHandler)
-
+window.addEventListener('resize', resizeHandler, false)
 resizeHandler()
+
+/**
+ * Allow user to upload a log file.
+ */
+function handleFileSelect(event) {
+  read(event.target.files[0])
+}
+fileUpload.addEventListener('change', handleFileSelect, false);
+
+// Testing Delete Me
+read()
