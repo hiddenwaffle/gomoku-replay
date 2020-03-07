@@ -33,5 +33,7 @@ window.addEventListener('keydown', (event) => {
     eventBus.fire('key-left')
   } else if (event.code === 'ArrowRight') {
     eventBus.fire('key-right')
+  } else if (event.code === 'Space') {
+    eventBus.fire('key-pause')
   }
 })

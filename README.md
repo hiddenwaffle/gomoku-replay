@@ -8,7 +8,13 @@ https://hiddenwaffle.github.io/gomoku-replay/
   * Otherwise, use the ```EXAMPLE.log``` file in this repository
 * Navigate to the URL specified above
 * Follow the prompt to upload the ```GAME.log``` file
-* Use the slider at the bottom to navigate
+* Keyboard controls:
+  * Left
+  * Right
+  * Space
+* Mouse controls:
+  * Slider at the bottom to navigate
+  * Play/pause button to the left of the slider
 
 ## Development Notes
 

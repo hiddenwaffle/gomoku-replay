@@ -18,6 +18,7 @@ export function init() {
   eventBus.register('file-read', resetAndPlay)
   eventBus.register('key-left', keyLeft)
   eventBus.register('key-right', keyRight)
+  eventBus.register('key-pause', keyPause)
   playButton.addEventListener('click', play)
   pauseButton.addEventListener('click', pause)
   moveSelector.addEventListener('change', () => {
@@ -26,6 +27,14 @@ export function init() {
   moveSelector.addEventListener('input', (event) => {
     userDragging = true
     updateCurrentMove(event.target.value)
+  })
+  moveSelector.addEventListener('keydown', (event) => {
+    // In case the user hits left/right while the focus is
+    // on the selector itself -- do not double increment.
+    if (event.code === 'ArrowLeft' ||
+        event.code === 'ArrowRight') {
+      event.preventDefault()
+    }
   })
 }
 
@@ -43,6 +52,20 @@ function updateCurrentMove(value) {
   eventBus.fire('current-move-changed')
 }
 
+/**
+ * Also does decrements.
+ */
+function increment(delta) {
+  if (userDragging) return // Try not to interfere with user
+  moveSelector.value = parseInt(moveSelector.value) + delta
+  if (parseInt(moveSelector.value) >= parseInt(moveSelector.max)) {
+    clearInterval(advancer)
+    advancer = null
+    showPlayButton(true)
+  }
+  updateCurrentMove(moveSelector.value)
+}
+
 function play() {
   if (advancer) {
     clearInterval(advancer)
@@ -53,19 +76,13 @@ function play() {
     moveSelector.value = 0
     updateCurrentMove(moveSelector.value)
   }
-  advancer = setInterval(() => {
-    if (userDragging) return // Try not to interfere with user
-    moveSelector.value = parseInt(moveSelector.value) + 1
-    if (parseInt(moveSelector.value) >= parseInt(moveSelector.max)) {
-      clearInterval(advancer)
-      advancer = null
-      showPlayButton(true)
-    }
-    updateCurrentMove(moveSelector.value)
-  }, DELAY)
+  advancer = setInterval(() => { increment(1) }, DELAY)
   showPlayButton(false)
 }
 
+/**
+ * It is ok for this function to be called multiple times in a row.
+ */
 function pause() {
   if (advancer) {
     clearInterval(advancer)
@@ -83,7 +100,23 @@ function showPlayButton(visible) {
 }
 
 function keyLeft() {
+  if (!moveSelector.disabled) {
+    increment(-1)
+  }
 }
 
 function keyRight() {
+  if (!moveSelector.disabled) {
+    increment(1)
+  }
+}
+
+function keyPause() {
+  if (!moveSelector.disabled) {
+    if (advancer) {
+      pause()
+    } else {
+      play()
+    }
+  }
 }
