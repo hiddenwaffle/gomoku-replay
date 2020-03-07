@@ -1,15 +1,32 @@
 body {
   text-align: center;
   margin: 32px;
-  background-color: #eee;
-  color: rgb(26, 26, 26);
-  font-size: 24pt;
+  background-color: #f5f5f5;
+  color: #848484;
+  font-size: 16pt;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 }
 
-.note {
-  font-size: 12pt;
-  color: #9a9a9a;
+.vs-container {
+  margin: 12px;
+}
+
+#red-name {
+  font-weight: bold;
+  color: #cc0035;
+}
+
+#blue-name {
+  font-weight: bold;
+  color: #354ca1;
+}
+
+#game-name {
+  font-size: 14pt;
+}
+
+#game-name-fancy {
+  display: none;
 }
 
 #file-upload {
@@ -41,6 +58,11 @@ body {
   display: none;
   cursor: pointer;
   user-select: none;
+}
+
+#message {
+  font-size: 14pt;
+  display: none;
 }
 
 .github-icon {
