@@ -9,12 +9,12 @@ https://hiddenwaffle.github.io/gomoku-replay/
 * Navigate to the URL specified above
 * Follow the prompt to upload the ```GAME.log``` file
 * Keyboard controls:
-  * Left
-  * Right
-  * Space
+  * Space - play/pause autoplay
+  * Left - back one move
+  * Right - forward one move
 * Mouse controls:
-  * Slider at the bottom to navigate
-  * Play/pause button to the left of the slider
+  * Play/pause button
+  * Slider
 
 ## Development Notes
 

@@ -81,7 +81,8 @@ body {
  * https://www.cssportal.com/style-input-range/
  * due to Chrome having a difficult-to-click default slider.
  */
- input[type=range] {
+
+input[type=range] {
   height: 24px;
   -webkit-appearance: none;
   margin: 10px 0;
