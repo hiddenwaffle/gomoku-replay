@@ -50,7 +50,7 @@ export function isEnd() {
 export function recalculateBoardSize() {
   let boardSize = 19
   if (model.moves.length > 0) {
-    boardSize = model.moves[0].length
+    boardSize = model.moves[0].length - 1
   }
   model.boardSize = boardSize
 }
