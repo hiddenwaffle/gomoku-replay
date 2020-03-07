@@ -1,3 +1,6 @@
+export const SMU_RED = '#cc0035'
+export const SMU_BLUE = '#354ca1'
+
 export const canvas = document.getElementById('canvas')
 export const ctx = canvas.getContext('2d')
 export const gameNameDiv = document.getElementById('game-name')

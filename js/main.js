@@ -18,7 +18,7 @@ gameNameInit()
  * Ensure that the canvas is scaled to the height of the window.
  */
 function resizeHandler() {
-  canvas.width = canvas.height = Math.floor(window.innerHeight * 0.75)
+  canvas.width = canvas.height = Math.floor(window.innerHeight * 0.70)
   moveSelector.style.width = `${canvas.width}px`
   eventBus.fire('window-resized')
 }

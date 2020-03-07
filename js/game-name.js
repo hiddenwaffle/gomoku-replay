@@ -1,4 +1,6 @@
 import {
+  SMU_RED,
+  SMU_BLUE,
   gameNameDiv,
   gameNameFancyDiv,
   redNameSpan,
@@ -6,10 +8,14 @@ import {
   messageDiv
 } from './elements'
 import {eventBus} from './event-bus'
-import {gameName as getGameName} from './model'
+import {
+  gameName as getGameName,
+  isEnd
+} from './model'
 
 export function init() {
   eventBus.register('game-name-updated', displayGameName)
+  eventBus.register('current-move-changed', sliderChanged)
 }
 
 /**
@@ -40,23 +46,36 @@ function parse(line) {
   } else {
     message = `TIE - ${numMoves} moves over ${elapsed}`
   }
-  return [true, red, blue, message]
+  return [true, red, blue, message, winner]
 }
 
 function displayGameName() {
   const line = getGameName()
-  const [success, red, blue, message] = parse(line)
+  const [success, red, blue, message, winner] = parse(line)
   if (success) {
     gameNameDiv.style.display = 'none'
     gameNameFancyDiv.style.display = 'block'
-    messageDiv.style.display = 'block'
     redNameSpan.innerText = red
     blueNameSpan.innerText = blue
     messageDiv.innerText = message
+    if (winner === '1') {
+      messageDiv.style.color = SMU_RED
+    } else if (winner === '-1') {
+      messageDiv.style.color = SMU_BLUE
+    } else {
+      messageDiv.style.color = 'black'
+    }
   } else {
     gameNameDiv.style.display = 'block'
     gameNameFancyDiv.style.display = 'none'
-    messageDiv.style.display = 'none'
     gameNameDiv.innerText = line
+  }
+}
+
+function sliderChanged() {
+  if (isEnd()) {
+    messageDiv.style.display = 'block'
+  } else {
+    messageDiv.style.display = 'none'
   }
 }

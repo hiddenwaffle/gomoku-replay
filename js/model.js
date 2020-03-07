@@ -40,3 +40,7 @@ export function gameName() {
 export function setGameName(value) {
   model.gameName = value
 }
+
+export function isEnd() {
+  return model.currentMoveIndex >= model.moves.length - 1
+}

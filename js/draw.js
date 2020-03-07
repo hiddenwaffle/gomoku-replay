@@ -1,13 +1,12 @@
 import {config} from './config'
 import {
   canvas,
-  ctx
+  ctx,
+  SMU_BLUE,
+  SMU_RED
 } from './elements'
 import {eventBus} from './event-bus'
 import {model, currentMove} from './model'
-
-const SMU_RED = '#cc0035'
-const SMU_BLUE = '#354ca1'
 
 export function init() {
   eventBus.register('window-resized', draw)
