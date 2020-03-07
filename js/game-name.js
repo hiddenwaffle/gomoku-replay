@@ -14,8 +14,13 @@ import {
 } from './model'
 
 export function init() {
+  eventBus.register('file-opened', reset)
   eventBus.register('game-name-updated', displayGameName)
   eventBus.register('current-move-changed', sliderChanged)
+}
+
+function reset() {
+  setInnerTexts('', '', '')
 }
 
 /**
@@ -28,11 +33,11 @@ export function init() {
 function parse(line) {
   const matchResults = line.match(/^(.*) (.*) - (.*)\.v\.(.*) - INFO - Winner: (.*) in (.*) moves time= (.*)$/)
   if (!matchResults || matchResults.length !== 8) {
-    return [false]
+    return ['', '', '', '']
   }
   // Remember [0] is the whole string again
-  // const date = matchResults[1]
-  // const time = matchResults[2]
+  //          [1] is just the log date
+  //          [2] is just the log time
   const red = matchResults[3]
   const blue = matchResults[4]
   const winner = matchResults[5] // 1, -1, or 0
@@ -46,30 +51,28 @@ function parse(line) {
   } else {
     message = `TIE - ${numMoves} moves over ${elapsed}`
   }
-  return [true, red, blue, message, winner]
+  return [red, blue, message, winner]
 }
 
 function displayGameName() {
   const line = getGameName()
-  const [success, red, blue, message, winner] = parse(line)
-  if (success) {
-    gameNameDiv.style.display = 'none'
-    gameNameFancyDiv.style.display = 'block'
-    redNameSpan.innerText = red
-    blueNameSpan.innerText = blue
-    messageDiv.innerText = message
-    if (winner === '1') {
-      messageDiv.style.color = SMU_RED
-    } else if (winner === '-1') {
-      messageDiv.style.color = SMU_BLUE
-    } else {
-      messageDiv.style.color = 'black'
-    }
+  const [red, blue, message, winner] = parse(line)
+  gameNameDiv.style.display = 'none'
+  gameNameFancyDiv.style.display = 'block'
+  if (winner === '1') {
+    messageDiv.style.color = SMU_RED
+  } else if (winner === '-1') {
+    messageDiv.style.color = SMU_BLUE
   } else {
-    gameNameDiv.style.display = 'block'
-    gameNameFancyDiv.style.display = 'none'
-    gameNameDiv.innerText = line
+    messageDiv.style.color = '#333333'
   }
+  setInnerTexts(red, blue, message)
+}
+
+function setInnerTexts(red, blue, message) {
+  redNameSpan.innerText = red
+  blueNameSpan.innerText = blue
+  messageDiv.innerText = message
 }
 
 function sliderChanged() {

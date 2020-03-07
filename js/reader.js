@@ -52,6 +52,7 @@ function parse(text) {
 export function read(file) {
   const reader = new FileReader()
   reader.addEventListener('loadend', (event) => {
+    eventBus.fire('file-opened')
     if (event.target.readyState === FileReader.DONE) {
       parse(event.target.result)
     }
