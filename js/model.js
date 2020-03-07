@@ -8,7 +8,8 @@ export const model = {
   // These assignments should match clear()
   gameName: null,
   currentMoveIndex: null,
-  moves: []
+  moves: [],
+  boardSize: 19
 }
 
 export function clear() {
@@ -43,4 +44,12 @@ export function setGameName(value) {
 
 export function isEnd() {
   return model.currentMoveIndex >= model.moves.length - 1
+}
+
+export function recalculateBoardSize() {
+  let boardSize = 19
+  if (model.moves.length > 0) {
+    boardSize = model.moves[0].length
+  }
+  model.boardSize = boardSize
 }

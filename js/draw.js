@@ -1,4 +1,3 @@
-import {config} from './config'
 import {
   canvas,
   ctx,
@@ -19,7 +18,7 @@ export function init() {
  * as well but it doesn't need to be that fancy.
  */
 function getCellSize() {
-  return Math.floor(canvas.height / config.boardSize) - 1
+  return Math.floor(canvas.height / model.boardSize) - 1
 }
 
 function drawCellBoundary(row, col, cellSize) {
@@ -53,8 +52,8 @@ export function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   const cellSize = getCellSize()
   ctx.strokeStyle = 'lightgray'
-  for (let row = 0; row < config.boardSize; row++) {
-    for (let col = 0; col < config.boardSize; col++) {
+  for (let row = 0; row < model.boardSize; row++) {
+    for (let col = 0; col < model.boardSize; col++) {
       drawCellBoundary(row, col, cellSize)
     }
   }

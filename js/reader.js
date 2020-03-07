@@ -2,7 +2,8 @@ import {eventBus} from './event-bus'
 import {
   clear,
   addMove,
-  setGameName
+  setGameName,
+  recalculateBoardSize
 } from './model'
 
 /**
@@ -31,6 +32,7 @@ export function applyLines(lines) {
     alert('There were errors reading the file. This might cause the game ' +
           'to render incorrectly.')
   }
+  recalculateBoardSize() // In case it is not 19x19
   eventBus.fire('file-read')
 }
 
