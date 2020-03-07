@@ -9,6 +9,7 @@ import {
  * Testing Delete Me
  */
 export function applyLines(lines) {
+  let errors = false
   clear()
   for (let line of lines) {
     const matchResults = line.match(/ - DEBUG - ([X.O|]+)$/)
@@ -23,7 +24,12 @@ export function applyLines(lines) {
       // Ignore
     } else {
       console.error(`Unknown line: ${line}`)
+      errors = true
     }
+  }
+  if (errors) {
+    alert('There were errors reading the file. This might cause the game ' +
+          'to render incorrectly.')
   }
   eventBus.fire('file-read')
 }
