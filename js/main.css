@@ -86,6 +86,11 @@ body {
  * due to Chrome having a difficult-to-click default slider.
  */
 
+/* This one is custom to visualize a disabled slider */
+input:disabled {
+  filter: grayscale(1)
+}
+
 input[type=range] {
   height: 24px;
   -webkit-appearance: none;
