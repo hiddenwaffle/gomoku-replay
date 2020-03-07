@@ -63,6 +63,7 @@ body {
 
 #speed {
   cursor: pointer;
+  border-bottom: 1px dotted #f9c80e;
 }
 
 #message {
