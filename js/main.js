@@ -24,3 +24,14 @@ function resizeHandler() {
 }
 window.addEventListener('resize', resizeHandler, false)
 resizeHandler()
+
+/**
+ * Handle keyboard events at the top-level.
+ */
+window.addEventListener('keydown', (event) => {
+  if (event.code === 'ArrowLeft') {
+    eventBus.fire('key-left')
+  } else if (event.code === 'ArrowRight') {
+    eventBus.fire('key-right')
+  }
+})

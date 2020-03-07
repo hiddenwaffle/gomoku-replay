@@ -16,6 +16,8 @@ let userDragging = false
 
 export function init() {
   eventBus.register('file-read', resetAndPlay)
+  eventBus.register('key-left', keyLeft)
+  eventBus.register('key-right', keyRight)
   playButton.addEventListener('click', play)
   pauseButton.addEventListener('click', pause)
   moveSelector.addEventListener('change', () => {
@@ -78,4 +80,10 @@ function pause() {
 function showPlayButton(visible) {
   playButton.style.display = visible ? 'inline' : 'none'
   pauseButton.style.display = visible ? 'none' : 'inline'
+}
+
+function keyLeft() {
+}
+
+function keyRight() {
 }
