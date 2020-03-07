@@ -5,7 +5,10 @@ import {
   SMU_RED
 } from './elements'
 import {eventBus} from './event-bus'
-import {model, currentMove} from './model'
+import {
+  currentMove,
+  boardSize as getBoardSize
+} from './model'
 
 export function init() {
   eventBus.register('window-resized', draw)
@@ -18,7 +21,7 @@ export function init() {
  * as well but it doesn't need to be that fancy.
  */
 function getCellSize() {
-  return Math.floor(canvas.height / model.boardSize) - 1
+  return Math.floor(canvas.height / getBoardSize()) - 1
 }
 
 function drawCellBoundary(row, col, cellSize) {
@@ -52,19 +55,18 @@ export function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   const cellSize = getCellSize()
   ctx.strokeStyle = 'lightgray'
-  for (let row = 0; row < model.boardSize; row++) {
-    for (let col = 0; col < model.boardSize; col++) {
+  const boardSize = getBoardSize()
+  for (let row = 0; row < boardSize; row++) {
+    for (let col = 0; col < boardSize; col++) {
       drawCellBoundary(row, col, cellSize)
     }
   }
-  if (model.currentMoveIndex >= 0) {
-    const move = currentMove()
-    if (move) {
-      for (let [row, symbols] of move.entries()) {
-        for (let col = 0; col < symbols.length; col++) {
-          const value = symbols[col]
-          drawCell(row, col, value, cellSize)
-        }
+  const move = currentMove()
+  if (move) {
+    for (let [row, symbols] of move.entries()) {
+      for (let col = 0; col < symbols.length; col++) {
+        const value = symbols[col]
+        drawCell(row, col, value, cellSize)
       }
     }
   }

@@ -61,6 +61,10 @@ body {
   user-select: none;
 }
 
+#speed {
+  cursor: pointer;
+}
+
 #message {
   font-size: 14pt;
   display: none;

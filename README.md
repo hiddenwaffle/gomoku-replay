@@ -15,6 +15,7 @@ https://hiddenwaffle.github.io/gomoku-replay/
 * Mouse controls:
   * Play/pause button
   * Slider
+  * Playback speed
 
 ## Development Notes
 

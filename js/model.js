@@ -4,12 +4,13 @@
 //   'XOX']
 // Moves are in order from first at [0] to last at [length-1].
 
-export const model = {
+const model = {
   // These assignments should match clear()
   gameName: null,
   currentMoveIndex: null,
   moves: [],
-  boardSize: 19
+  boardSize: 19,
+  delay: 333
 }
 
 export function clear() {
@@ -52,4 +53,16 @@ export function recalculateBoardSize() {
     boardSize = model.moves[0].length
   }
   model.boardSize = boardSize
+}
+
+export function delay() {
+  return model.delay
+}
+
+export function setDelay(value) {
+  model.delay = value
+}
+
+export function boardSize() {
+  return model.boardSize
 }

@@ -7,12 +7,14 @@ import {
 import {eventBus} from './event-bus'
 import {init as fileSelectorInit} from './file-selector'
 import {init as gameNameInit} from './game-name'
+import {init as speedInit} from './speed'
 
 // Specific initialization order:
 controlsInit()
 drawInit()
 fileSelectorInit()
 gameNameInit()
+speedInit()
 
 /**
  * Ensure that the canvas is scaled to the height of the window.

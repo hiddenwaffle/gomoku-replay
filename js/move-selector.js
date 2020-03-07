@@ -5,11 +5,10 @@ import {
 } from './elements'
 import {eventBus} from './event-bus'
 import {
+  delay as getDelay,
   moveCount,
   setCurrentMove
 } from './model'
-
-const DELAY = 333 // ms
 
 let advancer = null
 let userDragging = false
@@ -19,6 +18,7 @@ export function init() {
   eventBus.register('key-left', keyLeft)
   eventBus.register('key-right', keyRight)
   eventBus.register('key-pause', keyPause)
+  eventBus.register('speed-changed', speedChanged)
   playButton.addEventListener('click', play)
   pauseButton.addEventListener('click', pause)
   moveSelector.addEventListener('change', () => {
@@ -76,7 +76,7 @@ function play() {
     moveSelector.value = 0
     updateCurrentMove(moveSelector.value)
   }
-  advancer = setInterval(() => { increment(1) }, DELAY)
+  advancer = setInterval(() => { increment(1) }, getDelay())
   showPlayButton(false)
 }
 
@@ -118,5 +118,12 @@ function keyPause() {
     } else {
       play()
     }
+  }
+}
+
+function speedChanged() {
+  if (!moveSelector.disabled) {
+    pause()
+    play()
   }
 }
