@@ -6,6 +6,7 @@
 
 export const model = {
   // These assignments should match clear()
+  gameName: null,
   currentMoveIndex: null,
   moves: []
 }
@@ -30,4 +31,12 @@ export function setCurrentMove(index) {
 
 export function moveCount() {
   return model.moves.length
+}
+
+export function gameName() {
+  return model.gameName
+}
+
+export function setGameName(value) {
+  model.gameName = value
 }

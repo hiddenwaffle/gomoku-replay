@@ -1,5 +1,6 @@
 export const canvas = document.getElementById('canvas')
 export const ctx = canvas.getContext('2d')
+export const gameNameSpan = document.getElementById('game-name')
 export const fileUpload = document.getElementById('file-upload')
 export const playButton = document.getElementById('play-button')
 export const pauseButton = document.getElementById('pause-button')

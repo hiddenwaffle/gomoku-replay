@@ -6,11 +6,13 @@ import {
 } from './elements'
 import {eventBus} from './event-bus'
 import {init as fileSelectorInit} from './file-selector'
+import {init as gameNameInit} from './game-name'
 
 // Specific initialization order:
 controlsInit()
 drawInit()
 fileSelectorInit()
+gameNameInit()
 
 /**
  * Ensure that the canvas is scaled to the height of the window.

@@ -1,5 +1,9 @@
 import {eventBus} from './event-bus'
-import {clear, addMove} from './model'
+import {
+  clear,
+  addMove,
+  setGameName
+} from './model'
 
 /**
  * Testing Delete Me
@@ -13,7 +17,8 @@ export function applyLines(lines) {
     } else if (line.includes('INFO - Game Board Size')) {
       // Ignore
     } else if (line.includes('INFO - Winner')) {
-      console.log('TODO: Handle this:', line)
+      setGameName(line)
+      eventBus.fire('game-name-updated')
     } else if (line.trim() === '') {
       // Ignore
     } else {
