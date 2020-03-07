@@ -14,15 +14,41 @@ body {
 
 #file-upload {
   width: 78px;
+  outline: none;
 }
 
 #range-container {
   margin-top: -24px;
   margin-left: -28px; /* hack */
+  display: flex;
+  justify-content: center;
+}
+
+#range-container > * {
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#play-button {
+  display: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+#pause-button {
+  display: none;
+  cursor: pointer;
+  user-select: none;
 }
 
 .github-icon {
   position: absolute;
   right: 16px;
   bottom: 16px;
+  background-color: #e5e5e5;
+  padding: 8px;
+  border-radius: 64px;
+  user-select: none;
 }
