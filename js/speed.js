@@ -5,7 +5,7 @@ import {
   setDelay
 } from './model'
 
-const DEFAULT_DELAY = 333
+const DEFAULT_DELAY = 666
 
 export function init() {
   speedDiv.addEventListener('keydown', handleKeyDown)
