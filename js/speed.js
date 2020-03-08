@@ -8,9 +8,14 @@ import {
 const DEFAULT_DELAY = 666
 
 export function init() {
+  eventBus.register('file-read', handleFileRead)
   speedDiv.addEventListener('keydown', handleKeyDown)
   speedDiv.addEventListener('blur', handleBlur)
   setPlaybackSpeed(1)
+}
+
+function handleFileRead(event) {
+  speedDiv.dataset.disabled = "false"
 }
 
 /**

@@ -63,7 +63,11 @@ body {
 
 #speed {
   cursor: pointer;
-  border-bottom: 1px dotted #f9c80e;
+  border: 1px solid #f9c80e;
+}
+
+#speed[data-disabled="true"] {
+  filter: grayscale(1)
 }
 
 #message {
