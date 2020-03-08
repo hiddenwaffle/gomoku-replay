@@ -32,26 +32,40 @@ function reset() {
  */
 function parse(line) {
   const matchResults = line.match(/^(.*) (.*) - (.*)\.v\.(.*) - INFO - Winner: (.*) in (.*) moves time= (.*)$/)
-  if (!matchResults || matchResults.length !== 8) {
-    return ['', '', '', '']
+  if (matchResults && matchResults.length === 8) {
+    // Remember [0] is the whole string again
+    //          [1] is just the log date
+    //          [2] is just the log time
+    const red = matchResults[3]
+    const blue = matchResults[4]
+    const winner = matchResults[5] // 1, -1, or 0
+    const numMoves = matchResults[6]
+    const elapsed = matchResults[7]
+    let message
+    if (winner === '1') {
+      message = `${red} wins in ${numMoves} moves over ${elapsed}`
+    } else if (winner === '-1') {
+      message = `${blue} wins in ${numMoves} moves over ${elapsed}`
+    } else {
+      message = `TIE - ${numMoves} moves over ${elapsed}`
+    }
+    return [red, blue, message, winner]
+  } else if (line.includes('INFO - TIE GAME')) { // Last minute change for ties
+    const matchResults = line.match(/^(.*) (.*) - (.*)\.v\.(.*) - INFO - TIE GAME: (.*) > (.*) /)
+    if (matchResults && matchResults.length == 7) {
+      // Remember [0] is the whole string again
+      //          [1] is just the log date
+      //          [2] is just the log time
+      const red = matchResults[3]
+      const blue = matchResults[4]
+      const elapsed = matchResults[5]
+      const maxTime = matchResults[6]
+      const message = `TIE - match exceeded time - stopped at ${elapsed} of ${maxTime} secs`
+      return [red, blue, message, '0'] // 0 means tie to be consistent with other log format
+    }
   }
-  // Remember [0] is the whole string again
-  //          [1] is just the log date
-  //          [2] is just the log time
-  const red = matchResults[3]
-  const blue = matchResults[4]
-  const winner = matchResults[5] // 1, -1, or 0
-  const numMoves = matchResults[6]
-  const elapsed = matchResults[7]
-  let message
-  if (winner === '1') {
-    message = `${red} wins in ${numMoves} moves over ${elapsed}`
-  } else if (winner === '-1') {
-    message = `${blue} wins in ${numMoves} moves over ${elapsed}`
-  } else {
-    message = `TIE - ${numMoves} moves over ${elapsed}`
-  }
-  return [red, blue, message, winner]
+  // Otherwise:
+  return ['', '', '', '']
 }
 
 function displayGameName() {

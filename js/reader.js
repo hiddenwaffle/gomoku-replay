@@ -18,7 +18,8 @@ export function applyLines(lines) {
       addMove(matchResults[1].split('|')) // Use [1] because [0] is the full string.
     } else if (line.includes('INFO - Game Board Size')) {
       // Ignore
-    } else if (line.includes('INFO - Winner')) {
+    } else if (line.includes('INFO - Winner') ||
+               line.includes('INFO - TIE GAME')) { // Last minute change for ties
       setGameName(line)
       eventBus.fire('game-name-updated')
     } else if (line.trim() === '') {
