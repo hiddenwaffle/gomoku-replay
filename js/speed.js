@@ -28,6 +28,8 @@ function handleKeyDown(event) {
     speedDiv.blur()
     event.stopPropagation() // Do not interfere with window controls TODO: Check true
     event.preventDefault()
+  } else if (event.code == 'Space') {
+    event.stopPropagation()
   }
 }
 
@@ -36,6 +38,8 @@ function handleBlur(event) {
   const asNumber = parseFloat(entered)
   if (asNumber > 0) {
     setPlaybackSpeed(asNumber)
+  } else {
+    document.execCommand('undo')
   }
 }
 
