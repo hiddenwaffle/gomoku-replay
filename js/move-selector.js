@@ -122,7 +122,7 @@ function keyPause() {
 }
 
 function speedChanged() {
-  if (!moveSelector.disabled) {
+  if (advancer && !moveSelector.disabled) {
     pause()
     play()
   }
