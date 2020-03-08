@@ -76,6 +76,14 @@ body {
   font-weight: bold;
 }
 
+#instructions {
+  text-align: left;
+  font-size: 12pt;
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+}
+
 .github-icon {
   position: absolute;
   right: 16px;
